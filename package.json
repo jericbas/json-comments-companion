@@ -1,0 +1,33 @@
+{
+  "name": "json-comments-companion",
+  "displayName": "JSON Comments Companion",
+  "description": "Pair JSON files with companion comment files for hover and CodeLens documentation",
+  "version": "0.1.0",
+  "publisher": "jericbas",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onLanguage:json"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "jsonCommentsCompanion.showCommentsPane",
+        "title": "Show Comments Pane"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "16.x",
+    "typescript": "^4.4.4"
+  }
+}

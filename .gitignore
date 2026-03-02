@@ -1,0 +1,12 @@
+# This is going to be ignored by git
+# Automaticaly generates files
+
+out/
+dist/
+node_modules/
+.vscode-test/
+*.vsix
+
+# Testing stuff
+.coverage/
+test-results/

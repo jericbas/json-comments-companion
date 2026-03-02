@@ -1,0 +1,16 @@
+{
+  "comments": {
+    "name": "Extension identifier - must be unique and lowercase",
+    "displayName": "Human-readable name shown in marketplace",
+    "description": "Short description of what the extension does",
+    "version": "Semver version - increment on each release",
+    "publisher": "Your VS Code marketplace publisher ID",
+    "engines": "Compatibility requirements for VS Code version",
+    "categories": "Categories help users find your extension",
+    "activationEvents": "When the extension should activate",
+    "main": "Entry point file - compiled from TypeScript",
+    "contributes": "Features this extension adds to VS Code",
+    "scripts": "npm scripts for build/publish tasks",
+    "devDependencies": "Dependencies needed for development"
+  }
+}

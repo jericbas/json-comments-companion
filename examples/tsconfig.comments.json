@@ -1,0 +1,11 @@
+{
+  "comments": {
+    "compilerOptions": "TypeScript compiler settings",
+    "compilerOptions.target": "JavaScript language version output",
+    "compilerOptions.module": "Module system for output",
+    "compilerOptions.outDir": "Output directory for compiled JS",
+    "compilerOptions.strict": "Enable all strict type checking",
+    "include": "Files to include in compilation",
+    "exclude": "Files to exclude from compilation"
+  }
+}

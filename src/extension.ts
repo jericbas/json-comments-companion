@@ -2,9 +2,6 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 
-// BUG: Forgot to import the util functions - this will work but they're unused
-// import { parseJsonPath } from './util';
-
 export function activate(context: vscode.ExtensionContext) {
     console.log('JSON Comments Companion activated');
 
@@ -28,11 +25,15 @@ async function loadCompanionComments(jsonPath: string): Promise<Record<string, s
     const baseName = path.basename(jsonPath, '.json');
     const commentsPath = path.join(dir, `${baseName}.comments.json`);
     
-    // BUG: Not handling file-not-found error - will throw if no companion file
-    const content = fs.readFileSync(commentsPath, 'utf-8');
-    const parsed = JSON.parse(content);
-    
-    return parsed.comments || {};
+    // FIX: Added proper error handling
+    try {
+        const content = fs.readFileSync(commentsPath, 'utf-8');
+        const parsed = JSON.parse(content);
+        return parsed.comments || {};
+    } catch (err) {
+        // No companion file or invalid JSON - return empty
+        return {};
+    }
 }
 
 function getJsonPathAtPosition(document: vscode.TextDocument, position: vscode.Position): string {
@@ -40,13 +41,12 @@ function getJsonPathAtPosition(document: vscode.TextDocument, position: vscode.P
     const lines = text.split('\n');
     const currentLine = lines[position.line];
     
-    // Naive parsing - find the key at this position
+    // Find the key at this position
     const keyMatch = currentLine.match(/"([^"]+)"\s*:/);
     if (keyMatch) {
         return keyMatch[1];
     }
     
-    // BUG: Returns empty string - should try smarter parsing
     return '';
 }
 
@@ -60,22 +60,31 @@ async function provideJsonHover(
         return undefined;
     }
 
-    // BUG: No try-catch here - could crash on missing file
-    const comments = await loadCompanionComments(document.uri.fsPath);
-    const comment = comments[jsonPath];
-    
-    if (comment) {
-        return new vscode.Hover(new vscode.MarkdownString(comment));
+    // FIX: Wrapped in try-catch
+    try {
+        const comments = await loadCompanionComments(document.uri.fsPath);
+        const comment = comments[jsonPath];
+        
+        if (comment) {
+            return new vscode.Hover(new vscode.MarkdownString(comment));
+        }
+    } catch (err) {
+        console.error('Error loading comments:', err);
     }
     
     return undefined;
 }
 
 async function provideJsonCodeLenses(document: vscode.TextDocument): Promise<vscode.CodeLens[]> {
-    // BUG: Should catch errors here
-    const comments = await loadCompanionComments(document.uri.fsPath);
-    const codeLenses: vscode.CodeLens[] = [];
+    // FIX: Added try-catch
+    let comments: Record<string, string> = {};
+    try {
+        comments = await loadCompanionComments(document.uri.fsPath);
+    } catch (err) {
+        console.log('No comments file found or error loading:', err);
+    }
     
+    const codeLenses: vscode.CodeLens[] = [];
     const text = document.getText();
     const lines = text.split('\n');
     

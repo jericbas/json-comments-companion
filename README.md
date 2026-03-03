@@ -1,5 +1,9 @@
 # 🔖 JSON Comments Companion
 
+> ⚠️ **WORK IN PROGRESS** — This extension is still under active development. Features may change, bugs exist, and things might break. Use at your own risk!
+
+---
+
 > Add comments to your JSON files via companion files — no more "what does this field do?"
 
 ## ✨ The Problem
@@ -75,17 +79,25 @@ Use dot notation for nested properties:
 }
 ```
 
+## 🚧 Current Status
+
+| Feature | Status |
+|---------|--------|
+| Hover tooltips | ✅ Working |
+| CodeLens annotations | ✅ Working |
+| Nested path support | 🚧 In progress |
+| Settings/config | 📋 Planned |
+| Marketplace publish | 📋 Planned |
+
 ## 🚀 Installation
 
-From VS Code Marketplace:
-```
-ext install json-comments-companion
-```
+> **Note:** Not yet published to marketplace. Install from source for now.
 
-## 🛠️ Development
-
+From source:
 ```bash
 # Clone & install
+git clone https://github.com/jericbas/json-comments-companion.git
+cd json-comments-companion
 npm install
 
 # Compile TypeScript
@@ -93,6 +105,40 @@ npm run compile
 
 # Open in VS Code, press F5 to run
 ```
+
+## 🛠️ Development
+
+```bash
+# Clone repo
+git clone https://github.com/jericbas/json-comments-companion.git
+cd json-comments-companion
+
+# Install dependencies
+npm install
+
+# Compile
+npm run compile
+
+# Watch mode
+npm run watch
+
+# Run tests
+npm test
+```
+
+## 📝 Known Issues
+
+- Nested path parsing is basic — complex nested structures may not resolve correctly
+- Error handling could be more graceful
+- No settings/configuration options yet
+
+## 🚀 Roadmap
+
+- [ ] Full nested path support (e.g., `scripts.build.watch`)
+- [ ] Configuration options (toggle hover/CodeLens)
+- [ ] Support for `.comments.md` files (Markdown comments)
+- [ ] VS Code Marketplace publish
+- [ ] Automated tests
 
 ## 📦 Tech Stack
 
@@ -103,3 +149,7 @@ npm run compile
 ## ⚖️ License
 
 MIT
+
+---
+
+*This project started as a learning exercise — I built a Playwright-based browser automation before discovering the official `speedtest` CLI. Sometimes you learn the hard way. See the [archived version](../../) for the original approach.*

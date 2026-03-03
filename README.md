@@ -1,7 +1,4 @@
 # 🔖 JSON Comments Companion
-
-> ⚠️ **WORK IN PROGRESS** — This extension is still under active development. Features may change, bugs exist, and things might break. Use at your own risk!
-
 > Add comments to your JSON files via companion files — no more "what does this field do?"
 
 ## ✨ The Problem

@@ -4,16 +4,11 @@
   "description": "Pair JSON files with companion comment files for hover and CodeLens documentation",
   "version": "0.1.0",
   "publisher": "jericbas",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jericbas/json-comments-companion"
-  },
   "engines": {
     "vscode": "^1.60.0"
   },
-  "categories": [
-    "Other"
-  ],
+  "categories": ["Other", "Visualization"],
+  "keywords": ["json", "comments", "documentation", "hover", "codelens"],
   "activationEvents": [
     "onLanguage:json"
   ],
@@ -21,19 +16,48 @@
   "contributes": {
     "commands": [
       {
-        "command": "jsonCommentsCompanion.showCommentsPane",
-        "title": "Show Comments Pane"
+        "command": "jsonCommentsCompanion.openCommentsFile",
+        "title": "Open Comments File"
       }
-    ]
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "jsonCommentsCompanion.openCommentsFile",
+          "when": "true"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package --no-dependencies",
+    "publish:marketplace": "vsce publish",
+    "release": "npm run compile && npm run package",
+    "release:patch": "npm version patch && npm run release && npm run publish:marketplace",
+    "release:minor": "npm version minor && npm run release && npm run publish:marketplace",
+    "release:major": "npm version major && npm run release && npm run publish:marketplace"
   },
   "devDependencies": {
     "@types/vscode": "^1.60.0",
     "@types/node": "16.x",
-    "typescript": "^4.4.4"
-  }
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "eslint": "^8.1.0",
+    "typescript": "^4.4.4",
+    "@vscode/vsce": "^2.15.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jericbas/json-comments-companion.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jericbas/json-comments-companion/issues"
+  },
+  "homepage": "https://github.com/jericbas/json-comments-companion#readme"
 }

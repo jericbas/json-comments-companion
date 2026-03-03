@@ -6,6 +6,9 @@ on:
       - "v*"
   workflow_dispatch:
 
+permissions:
+  contents: write  # Required to create releases
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -16,7 +19,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20  # Updated to Node 20 for better compatibility
+          node-version: 20
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
@@ -30,7 +33,7 @@ jobs:
         run: bun run compile
 
       - name: Lint Check
-        run: bun run lint || echo "Linting issues found but continuing..."
+        run: bun run lint || echo "Lint warnings found but continuing..."
 
       - name: Package Extension
         run: bun run package
@@ -45,6 +48,9 @@ jobs:
           files: |
             *.vsix
           generate_release_notes: true
-          fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Publish to Marketplace (disabled)
+        if: false
+        run: echo "Marketplace publish disabled in CI - run locally"

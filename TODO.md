@@ -1,0 +1,45 @@
+- Fix the two explicit BUGs in src/util.ts (parseJsonPath ignores parentPath; getGitignorContent has wrong name/return + incomplete logic).
+- Complete missing core functions in src/extension.ts (provideHover, provideCodeLenses, openCommentsFile, toggleSetting — currently only referenced, not implemented).
+- Make nested path resolution robust (support arrays with indices like array[0].key, escaped dots, complex objects, deep nesting beyond basic dot notation).
+- Update README.md (remove outdated “Settings: Planned” section, add accurate config table, How-it-works section).
+- Add screenshots/GIFs in README and images/ folder (demo hover + CodeLens on real configs).
+- Implement file watcher on companion *.comments.json files for auto-refresh without VS Code reload.
+- Add “Auto-create companion file” command + Code Action / Quick Fix (“Add comment for this key”).
+- Add Markdown support (allow *.comments.md with rich hover rendering: links, lists, code blocks, bold).
+- Add validation & diagnostics (red/yellow squiggles for missing keys in comments; toast when companion missing/malformed).
+- Expand configuration options (custom file pattern/suffix, per-workspace toggle, truncate length, ignore patterns, show-full-comment-in-hover).
+- Add JSON Schema fallback (auto-pull “description” from schema if no companion comment exists).
+- Implement full test suite (unit + integration tests for providers, path resolution, edge cases — test/ folder is currently empty).
+- Add ESLint + Prettier + CI enforcement and fix existing lint issues.
+- Add proper error handling, logging, and user feedback throughout the codebase.
+- Add JSDoc/comments explaining provider logic and path-matching algorithm.
+- Support multi-root workspaces and different JSON encodings.
+- Publish to VS Code Marketplace (use existing npm run release scripts; add .vsix to GitHub Releases).
+- Improve release workflow (.github/workflows) to run lint/tests automatically on tags.
+- Add proper icon.png, galleryBanner, keywords, categories in package.json for better discoverability.
+- Create CHANGELOG.md, CONTRIBUTING.md, issue templates.
+- Remove unused code (getGitignorContent, bun.lock if not using Bun) and clean up self-demo package.comments.json.
+- Add support for other comment formats as future option (*.comments.yaml / *.comments.toml) but only for non-native languages.
+- Add LSP mode for JetBrains/Vim/etc. compatibility using the same companion files.
+- Optimize performance for very large JSON files (>10k lines).
+- Add localization (i18n) for commands, settings, messages.
+- Add optional anonymous telemetry to track usage (opt-in).
+- Add GitHub Discussions and proper repo description/tags/badges.
+- Support array indices in paths and quoted keys like dependencies["lodash"].
+- Add per-file ignore list in workspace settings.
+- Implement “Open Comments File” right-click menu improvements (create if missing with template).
+- Add hover tooltip truncation toggle and full-comment expander.
+- Support companion files in subfolders or custom locations via glob patterns.
+- Add command to “Convert inline comments from JSONC/JSON5 to companion format” for migration.
+- Add example for every common JSON config (tsconfig, eslint, launch.json, settings.json, etc.) in examples/.
+- Make activationEvents more precise (only on json languageId, not jsonc).
+- Add setting to disable CodeLens entirely while keeping hover (and vice versa).
+- Implement smart path matching that handles duplicate keys in arrays/objects.
+- Add “Generate comments from JSON Schema” one-click command.
+- Support comment inheritance (base.comments.json + overrides).
+- Add dark/light theme aware icons for CodeLens.
+- Document the exact filename pattern matching logic in README.
+- Add “Star us if you like it” call-to-action in README.
+- Create a short 30-second demo video and embed in README.
+- Add security audit (no external deps that could be malicious).
+- Prepare for v1.0.0 release once critical fixes + marketplace publish are done.

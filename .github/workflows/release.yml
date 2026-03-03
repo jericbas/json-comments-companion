@@ -1,0 +1,61 @@
+name: "Release Extension"
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Compile Extension
+        run: bun run compile
+
+      - name: Lint Check
+        run: bun run lint
+        continue-on-error: true
+
+      - name: Package Extension
+        run: bun run package
+
+      - name: List Artifacts
+        run: ls -la *.vsix
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            *.vsix
+          generate_release_notes: true
+          fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to Marketplace (manual only)
+        if: false
+        run: |
+          echo "Marketplace publish disabled in CI"
+          echo "Run locally: npx @vscode/vsce publish -p $VSCE_PAT"
+        # Uncomment below and add VSCE_PAT secret to enable
+        # env:
+        #   VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        # run: npx @vscode/vsce publish -p $VSCE_PAT

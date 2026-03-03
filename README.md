@@ -1,4 +1,5 @@
 # 🔖 JSON Comments Companion
+
 > Add comments to your JSON files via companion files — no more "what does this field do?"
 
 ## ✨ The Problem
@@ -19,10 +20,10 @@ Pair any `.json` file with a `.{name}.comments.json` file:
 
 ```
 📦 my-project/
- ├── 📄 package.json
- ├── 📄 package.comments.json  ← Your annotations
- ├── 📄 tsconfig.json
- └── 📄 tsconfig.comments.json  ← More annotations
+├── 📄 package.json
+├── 📄 package.comments.json ← Your annotations
+├── 📄 tsconfig.json
+└── 📄 tsconfig.comments.json ← More annotations
 ```
 
 **Hover over any key to see its comment:**
@@ -30,11 +31,10 @@ Pair any `.json` file with a `.{name}.comments.json` file:
 **CodeLens shows comments inline:**
 
 ```json
-  // Extension ID for marketplace
-  "name": "my-extension",
-  
-  // Follow semantic versioning
-  "version": "1.0.0"
+💬 Compile TypeScript
+"build": "tsc",
+💬 Development mode with auto-reload
+"dev": "nodemon"
 ```
 
 ## 📋 Usage
@@ -48,15 +48,17 @@ For `package.json`, create `package.comments.json`:
   "comments": {
     "name": "Unique extension identifier for the marketplace",
     "version": "Use semantic versioning (semver)",
+    "scripts": "NPM scripts section",
     "scripts.build": "Compiles TypeScript to JavaScript",
-    "devDependencies.typescript": "TypeScript compiler version"
+    "scripts.watch": "Development mode with auto-reload",
+    "contributes.commands": "Commands available in command palette"
   }
 }
 ```
 
 ### 2. Hover & See
 
-Move your cursor over any JSON key — the comment appears!
+Move your cursor over any JSON key — the comment appears! Supports nested paths like `scripts.build`.
 
 ### 3. Nested paths
 
@@ -66,38 +68,49 @@ Use dot notation for nested properties:
 {
   "comments": {
     "scripts.build": "Production build",
-    "scripts.watch": "Development mode with auto-reload",
-    "contributes.commands": "Commands available in command palette"
+    "scripts.watch": "Development mode auto-reload",
+    "dependencies.lodash": "Utility library for data manipulation",
+    "servers.0.port": "Primary server port",
+    "servers.1.port": "Secondary server port"
   }
 }
 ```
 
-## 🚧 Current Status
+### 4. Commands
 
-| Feature | Status |
-|---------|--------|
-| Hover tooltips | ✅ Working |
-| CodeLens annotations | ✅ Working |
-| Nested path support | 🚧 In progress |
-| Settings/config | 📋 Planned |
-| Marketplace publish | 📋 Planned |
+| Command | Description |
+|---------|-------------|
+| `JSON: Open Comments File` | Opens or creates the companion file |
+| `JSON: Toggle Hover Comments` | Enable/disable hover tooltips |
+| `JSON: Toggle CodeLens Comments` | Enable/disable inline comments |
+
+Right-click any JSON file → "JSON: Open Comments File"
+
+## ⚙️ Configuration
+
+| Setting | Type | Default | Description |
+|---------|------|---------|-------------|
+| `jsonCommentsCompanion.hoverEnabled` | boolean | `true` | Show comments on hover over JSON keys |
+| `jsonCommentsCompanion.codeLensEnabled` | boolean | `true` | Show CodeLens annotations above JSON keys |
+| `jsonCommentsCompanion.filePattern` | string | `/{filename}.comments.json` | Pattern for comment files (use `{filename}` as placeholder) |
+| `jsonCommentsCompanion.maxCommentLength` | number | `50` | Maximum CodeLens text length (excess truncated with `...`) |
 
 ## 🚀 Installation
 
-> **Note:** Not yet published to marketplace. Install from source for now.
+### From VS Code Marketplace
 
-From source:
+Search for "JSON Comments Companion" in the Extensions panel.
+
+### From source
+
 ```bash
-# Clone & install
 git clone https://github.com/jericbas/json-comments-companion.git
 cd json-comments-companion
 npm install
-
-# Compile TypeScript
 npm run compile
-
-# Open in VS Code, press F5 to run
 ```
+
+Press `F5` to open Extension Development Host.
 
 ## 🛠️ Development
 
@@ -117,28 +130,46 @@ npm run watch
 
 # Run tests
 npm test
+
+# Package extension
+npm run package
 ```
 
-## 📝 Known Issues
+## 📸 Screenshots
 
-- Nested path parsing is basic — complex nested structures may not resolve correctly
-- Error handling could be more graceful
-- No settings/configuration options yet
+*TODO: Screenshots showing hover tooltip and CodeLens on real config files*
 
-## 🚀 RoadmapP
+## 📝 How it Works
 
-- [ ] Full nested path support (e.g., `scripts.build.watch`)
-- [ ] Configuration options (toggle hover/CodeLens)
-- [ ] Support for `.comments.md` files (Markdown comments)
-- [ ] VS Code Marketplace publish
-- [ ] Automated tests
+1. **File Detection**: When you open `*.json`, the extension looks for `{filename}.comments.json`
+2. **Path Resolution**: As you navigate JSON, it tracks your position in the document hierarchy
+3. **Matching**: Builds full paths (e.g., `scripts.build`) and matches against comment keys
+4. **Display**: Shows hover tooltips and inline CodeLens annotations
 
-## 📦 Tech Stack
+## 🗺️ Roadmap
 
-- 📝 TypeScript
-- 🔌 VS Code Extension API
-- 🎯 HoverProvider & CodeLensProvider
+- [x] Basic hover and CodeLens
+- [x] Nested path resolution (objects)
+- [x] Array index support
+- [ ] File watcher for auto-refresh
+- [ ] Quick Fix: "Add comment for this key"
+- [ ] Markdown support in comments
+- [ ] JSON Schema fallback
+
+## 📦 How It Works - Technical
+
+The extension uses VS Code's `HoverProvider` and `CodeLensProvider` APIs. The JSON document is parsed line-by-line to:
+
+1. Track brace/bracket depth for nested objects and arrays
+2. Build dot-notation paths from the current position
+3. Match paths against the companion file's comment map
+
+This approach avoids requiring a full JSON AST parse while handling most real-world JSON structures.
 
 ## ⚖️ License
 
 MIT
+
+---
+
+**Like this extension?** Star it on [GitHub](https://github.com/jericbas/json-comments-companion)!

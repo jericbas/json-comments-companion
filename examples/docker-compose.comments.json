@@ -1,0 +1,12 @@
+{
+  "comments": {
+    "version": "📋 Docker Compose file format version (3.9 recommended)",
+    "services": "🐳 Containers to run",
+    "services.app": "🚀 Main application container",
+    "services.app.image": "🖼️ Container image name and tag",
+    "services.app.build": "🔨 Build config (dev) vs image (prod)",
+    "services.app.ports": "🌐 Host:Container port mapping",
+    "services.app.depends_on": "❗ Start order - db/redis before app",
+    "services.app.healthcheck": "✅ Container health probe",
+    "services.db": "🛢️ PostgreSQL database container",
+    "services.db.volumes": "💾 Persistent storage

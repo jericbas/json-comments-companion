@@ -1,0 +1,55 @@
+{
+  "version": "3.9",
+  "services": {
+    "app": {
+      "image": "myawesomeapp:${TAG}",
+      "build": {
+        "context": ".",
+        "dockerfile": "Dockerfile",
+        "args": {
+          "NODE_ENV": "production"
+        }
+      },
+      "ports": ["3000:3000"],
+      "environment": [
+        "NODE_ENV=production",
+        "DB_HOST=db",
+        "REDIS_HOST=redis"
+      ],
+      "depends_on": ["db", "redis"],
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "healthcheck": {
+        "test": ["CMD", "curl", "-f", "http://localhost:3000/health"],
+        "interval": 30,
+        "timeout": 10,
+        "retries": 3
+      }
+    },
+    "db": {
+      "image": "postgres:15-alpine",
+      "volumes": ["pgdata:/var/lib/postgresql/data"],
+      "environment": {
+        "POSTGRES_DB": "myapp",
+        "POSTGRES_USER": "dbuser",
+        "POSTGRES_PASSWORD": "${DB_PASSWORD}"
+      },
+      "networks": ["backend"]
+    },
+    "redis": {
+      "image": "redis:7-alpine",
+      "volumes": ["redisdata:/data"],
+      "command": "redis-server --appendonly yes",
+      "networks": ["backend"]
+    }
+  },
+  "volumes": {
+    "pgdata": {},
+    "redisdata": {}
+  },
+  "networks": {
+    "backend": {
+      "driver": "bridge"
+    }
+  }
+}

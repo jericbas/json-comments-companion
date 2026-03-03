@@ -1,41 +1,26 @@
-# 📚 Examples Directory
+# 📚 Example Files
 
-Sample `.comments.json` files demonstrating real-world documentation.
+These JSON files demonstrate how to use JSON Comments Companion with real-world configurations.
 
-## 📦 package.comments.json
+## 📁 Files
 
-Documents a VS Code extension manifest. Shows how to explain:
-- Extension metadata (name, version, description)
-- VS Code engine compatibility
-- Activation events and contributes
-- npm scripts and dev dependencies
+### `config.json` + `config.comments.json`
+App configuration with environment settings, CORS, rate limiting, logging, and cache config.
 
-## ⚙️ tsconfig.comments.json
+### `database.json` + `database.comments.json`
+Database connection settings with PostgreSQL driver, SSL, and connection pooling.
 
-Documents TypeScript compiler options. Useful for:
-- Team onboarding
-- Compiler configuration reference
-- Modern TS features (strict mode, ESM, etc)
+### `api-keys.json` + `api-keys.comments.json`
+Third-party API credentials for Stripe, AWS S3, and other services.
 
-## 🔧 settings.comments.json
+### `ci.json` + `ci.comments.json`
+GitHub Actions CI/CD pipeline configuration.
 
-Documents VS Code user settings. Good for:
-- Sharing team configurations
-- Personal .dotfiles repos
-- Explaining editor preferences
+### `docker-compose.json` + `docker-compose.comments.json`
+Docker Compose multi-container orchestration with app, db, and redis services.
 
-## 💡 Usage Tips
+## 🚀 Try It
 
-1. **Copy and customize** — Start with these templates
-2. **Use dot notation** → `"scripts.build"` not `"scripts": { "build": ... }`
-3. **Keep comments short** — Under 60 chars for CodeLens readability
-4. **Add emoji** — Visual scanning: ⚙️ = settings, 🔧 = tools, etc
-5. **Comments support Markdown** — `**bold**`, `code`, [links](url)
-
-## 🚀 Quick Start
-
-```bash
-# Use these as templates for your project
-cp examples/package.comments.json my-project/package.comments.json
-cp examples/tsconfig.comments.json my-project/tsconfig.comments.json
-```
+1. Install the extension
+2. Open any `.json` file here
+3. Hover over keys to see comments!

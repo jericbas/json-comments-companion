@@ -1,0 +1,13 @@
+{
+  "comments": {
+    "services": "🔑 Third-party API credentials and config",
+    "services.stripe": "💳 Payment processing service",
+    "services.stripe.publicKey": "🔒 Client-side key (starts pk_live_ or pk_test_)",
+    "services.stripe.apiVersion": "📅 Stripe API version to use",
+    "services.aws": "☁️ Amazon Web Services configuration",
+    "services.aws.region": "🌍 AWS region code: us-east-1, eu-west-1",
+    "services.aws.s3": "📦 S3 bucket configuration",
+    "services.aws.s3.bucket": "🪣 Bucket name for file storage",
+    "services.aws.s3.presignedExpiry": "⏱️ Presigned URL lifetime in seconds"
+  }
+}

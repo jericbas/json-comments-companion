@@ -1,0 +1,15 @@
+{
+  "comments": {
+    "appName": "📝 Display name in logs and error messages",
+    "version": "🔢 Semantic version for cache busting and tracking",
+    "environment": "🌍 production, staging, development, or test",
+    "debug": "🐛 Enable verbose stack traces (disable in prod!)",
+    "port": "🔌 Server port: 3000 dev, 80/443 production",
+    "cors": "🔗 Cross-Origin Resource Sharing settings",
+    "cors.enabled": "✅ Allow browser cross-origin requests",
+    "rateLimit": "🛡️ DDoS protection - throttle excessive requests",
+    "rateLimit.windowMs": "⏱️ Time window for request counting (15 min)",
+    "logging": "🪵 Application logging configuration",
+    "logging.level": "📈 Verbosity: trace, debug, info, warn, error"
+  }
+}

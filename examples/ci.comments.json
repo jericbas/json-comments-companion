@@ -1,0 +1,12 @@
+{
+  "comments": {
+    "name": "🏷️ Workflow display name in GitHub Actions UI",
+    "on": "🚀 Events that trigger this workflow",
+    "jobs": "⚙️ Jobs to run in parallel or sequence",
+    "jobs.test": "🧪 Automated test job",
+    "jobs.test.runs-on": "🖥️ OS: ubuntu-latest, windows-latest, macos-latest",
+    "jobs.deploy": "🚀 Production deployment job",
+    "jobs.deploy.needs": "⛓️ Wait for test job to complete first",
+    "jobs.deploy.if": "🎬 Only deploy from main branch"
+  }
+}

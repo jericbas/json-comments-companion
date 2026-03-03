@@ -1,0 +1,20 @@
+{
+  "appName": "MyAwesomeApp",
+  "version": "2.4.1",
+  "environment": "production",
+  "debug": false,
+  "port": 3000,
+  "cors": {
+    "enabled": true,
+    "origins": ["https://app.example.com"]
+  },
+  "rateLimit": {
+    "windowMs": 900000,
+    "maxRequests": 100
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "rotate": true
+  }
+}

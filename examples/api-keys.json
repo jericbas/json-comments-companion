@@ -1,0 +1,15 @@
+{
+  "services": {
+    "stripe": {
+      "publicKey": "pk_live_xxxxxxxx",
+      "apiVersion": "2023-10-16"
+    },
+    "aws": {
+      "region": "us-east-1",
+      "s3": {
+        "bucket": "myapp-uploads",
+        "presignedExpiry": 3600
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "comments": {
+    "driver": "🛢️ Database engine: postgresql, mysql, sqlite",
+    "host": "🌐 Database server hostname",
+    "port": "🔌 Default: 5432 (PG), 3306 (MySQL), 27017 (Mongo)",
+    "database": "📁 Database name/schema to connect",
+    "ssl": "🔒 Encryption in transit for production DBs",
+    "ssl.rejectUnauthorized": "⚠️ false for self-signed certs (dev only)",
+    "pool": "🏊 Connection pooling for performance",
+    "pool.min": "📉 Keep warm connections ready",
+    "pool.max": "📈 Max connections - don't overwhelm DB"
+  }
+}

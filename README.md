@@ -32,8 +32,6 @@ Pair any `.json` file with a `.{name}.comments.json` file:
 
 **Hover over any key to see its comment:**
 
-![hover-demo](images/hover-demo.png)
-
 **CodeLens shows comments inline:**
 
 ```json
@@ -132,7 +130,7 @@ npm test
 - Error handling could be more graceful
 - No settings/configuration options yet
 
-## 🚀 Roadmap
+## 🚀 RoadmapP
 
 - [ ] Full nested path support (e.g., `scripts.build.watch`)
 - [ ] Configuration options (toggle hover/CodeLens)

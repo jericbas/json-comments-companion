@@ -4,10 +4,16 @@
   "description": "Pair JSON files with companion comment files for hover and CodeLens documentation",
   "version": "0.1.0",
   "publisher": "jericbas",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jericbas/json-comments-companion"
+  },
   "engines": {
     "vscode": "^1.60.0"
   },
-  "categories": ["Other"],
+  "categories": [
+    "Other"
+  ],
   "activationEvents": [
     "onLanguage:json"
   ],

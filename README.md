@@ -2,8 +2,6 @@
 
 > ⚠️ **WORK IN PROGRESS** — This extension is still under active development. Features may change, bugs exist, and things might break. Use at your own risk!
 
----
-
 > Add comments to your JSON files via companion files — no more "what does this field do?"
 
 ## ✨ The Problem
@@ -147,7 +145,3 @@ npm test
 ## ⚖️ License
 
 MIT
-
----
-
-*This project started as a learning exercise — I built a Playwright-based browser automation before discovering the official `speedtest` CLI. Sometimes you learn the hard way. See the [archived version](../../) for the original approach.*

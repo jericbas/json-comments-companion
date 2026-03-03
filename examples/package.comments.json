@@ -1,0 +1,20 @@
+{
+  "comments": {
+    "name": "📦 Extension ID - unique lowercase identifier for marketplace",
+    "displayName": "🏷️ Human-readable name shown in Extensions panel",
+    "description": "📝 One-line description of what this does",
+    "version": "🔢 Semantic version - bump on every release",
+    "publisher": "👤 Your VS Code marketplace publisher ID",
+    "engines.vscode": "⚙️ Minimum VS Code version required",
+    "categories": "📂 Categories help users discover your extension",
+    "activationEvents": "🚀 When to activate (on startup, on command, etc)",
+    "main": "📍 Entry point - compiled JavaScript file",
+    "contributes.commands": "🎁 Commands added to command palette",
+    "contributes.menus": "🎁 Menu contributions (right-click, etc)",
+    "contributes.keybindings": "⌨️ Keyboard shortcuts",
+    "scripts.compile": "🔨 Compile TypeScript to JavaScript",
+    "scripts.watch": "👀 Watch mode - auto compile on save",
+    "devDependencies.typescript": "📚 TypeScript compiler",
+    "devDependencies.@types/vscode": "📚 VS Code API types"
+  }
+}

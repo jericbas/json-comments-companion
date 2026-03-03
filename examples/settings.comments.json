@@ -1,0 +1,20 @@
+{
+  "comments": {
+    "editor.fontSize": "🔤 Editor font size in pixels",
+    "editor.tabSize": "⏭️ Spaces per tab indentation",
+    "editor.wordWrap": "📏 Wrap long lines - 'off', 'on', 'wordWrapColumn'",
+    "editor.minimap.enabled": "🗺️ Show minimap preview",
+    "editor.formatOnSave": "✨ Auto-format code on save",
+    "editor.defaultFormatter": "🔧 Default formatter extension",
+    "files.autoSave": "💾 Auto-save: 'off', 'afterDelay', 'onFocusChange'",
+    "files.exclude": "🚫 Files hidden from explorer (e.g., **/node_modules)",
+    "workbench.colorTheme": "🎨 VS Code color theme",
+    "workbench.iconTheme": "🎯 File icon theme",
+    "terminal.integrated.defaultProfile.linux": "🐧 Default Linux shell",
+    "terminal.integrated.defaultProfile.windows": "🪟 Default Windows shell",
+    "git.enableSmartCommit": "🧠 Commit without staging",
+    "extensions.autoUpdate": "🔄 Auto-update extensions from marketplace",
+    "[typescript]": "⚙️ TypeScript-specific settings",
+    "[javascript]": "⚙️ JavaScript-specific settings"
+  }
+}

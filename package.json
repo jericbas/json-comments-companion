@@ -2,7 +2,7 @@
   "name": "json-comments-companion",
   "displayName": "JSON Comments Companion",
   "description": "Pair JSON files with companion comment files for hover and CodeLens documentation",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "jericbas",
   "engines": {
     "vscode": "^1.60.0"
@@ -17,7 +17,15 @@
     "commands": [
       {
         "command": "jsonCommentsCompanion.openCommentsFile",
-        "title": "Open Comments File"
+        "title": "JSON: Open Comments File"
+      },
+      {
+        "command": "jsonCommentsCompanion.toggleHover",
+        "title": "JSON: Toggle Hover Comments"
+      },
+      {
+        "command": "jsonCommentsCompanion.toggleCodeLens",
+        "title": "JSON: Toggle CodeLens Comments"
       }
     ],
     "menus": {
@@ -25,8 +33,50 @@
         {
           "command": "jsonCommentsCompanion.openCommentsFile",
           "when": "true"
+        },
+        {
+          "command": "jsonCommentsCompanion.toggleHover",
+          "when": "true"
+        },
+        {
+          "command": "jsonCommentsCompanion.toggleCodeLens",
+          "when": "true"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "jsonCommentsCompanion.openCommentsFile",
+          "group": "2_configuration@5",
+          "when": "editorLangId == json"
         }
       ]
+    },
+    "configuration": {
+      "title": "JSON Comments Companion",
+      "properties": {
+        "jsonCommentsCompanion.hoverEnabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Show comments on hover over JSON keys"
+        },
+        "jsonCommentsCompanion.codeLensEnabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Show CodeLens annotations above JSON keys with comments"
+        },
+        "jsonCommentsCompanion.filePattern": {
+          "type": "string",
+          "default": "{filename}.comments.json",
+          "markdownDescription": "Pattern for comment files. Use `{filename}` as placeholder for the base name."
+        },
+        "jsonCommentsCompanion.maxCommentLength": {
+          "type": "number",
+          "default": 50,
+          "minimum": 10,
+          "maximum": 200,
+          "markdownDescription": "Maximum length of CodeLens comment text (excess truncated with ...)"
+        }
+      }
     }
   },
   "scripts": {

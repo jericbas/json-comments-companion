@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20  # Updated to Node 20 for better compatibility
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
@@ -30,8 +30,7 @@ jobs:
         run: bun run compile
 
       - name: Lint Check
-        run: bun run lint
-        continue-on-error: true
+        run: bun run lint || echo "Linting issues found but continuing..."
 
       - name: Package Extension
         run: bun run package
@@ -49,13 +48,3 @@ jobs:
           fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Publish to Marketplace (manual only)
-        if: false
-        run: |
-          echo "Marketplace publish disabled in CI"
-          echo "Run locally: npx @vscode/vsce publish -p $VSCE_PAT"
-        # Uncomment below and add VSCE_PAT secret to enable
-        # env:
-        #   VSCE_PAT: ${{ secrets.VSCE_PAT }}
-        # run: npx @vscode/vsce publish -p $VSCE_PAT

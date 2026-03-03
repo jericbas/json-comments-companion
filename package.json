@@ -7,8 +7,17 @@
   "engines": {
     "vscode": "^1.60.0"
   },
-  "categories": ["Other", "Visualization"],
-  "keywords": ["json", "comments", "documentation", "hover", "codelens"],
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "json",
+    "comments",
+    "documentation",
+    "hover",
+    "codelens"
+  ],
   "activationEvents": [
     "onLanguage:json"
   ],
@@ -109,5 +118,6 @@
   "bugs": {
     "url": "https://github.com/jericbas/json-comments-companion/issues"
   },
-  "homepage": "https://github.com/jericbas/json-comments-companion#readme"
+  "homepage": "https://github.com/jericbas/json-comments-companion#readme",
+  "icon": "images/icon.png"
 }

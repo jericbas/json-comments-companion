@@ -35,6 +35,10 @@
       {
         "command": "jsonCommentsCompanion.toggleCodeLens",
         "title": "JSON: Toggle CodeLens Comments"
+      },
+      {
+        "command": "jsonCommentsCompanion.clearCache",
+        "title": "JSON: Clear Comments Cache"
       }
     ],
     "menus": {
@@ -49,6 +53,10 @@
         },
         {
           "command": "jsonCommentsCompanion.toggleCodeLens",
+          "when": "true"
+        },
+        {
+          "command": "jsonCommentsCompanion.clearCache",
           "when": "true"
         }
       ],

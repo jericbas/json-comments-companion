@@ -83,6 +83,7 @@ Use dot notation for nested properties:
 | `JSON: Open Comments File` | Opens or creates the companion file |
 | `JSON: Toggle Hover Comments` | Enable/disable hover tooltips |
 | `JSON: Toggle CodeLens Comments` | Enable/disable inline comments |
+| `JSON: Clear Comments Cache` | Clear the comment cache (use if stale) |
 
 Right-click any JSON file → "JSON: Open Comments File"
 
@@ -106,11 +107,13 @@ Search for "JSON Comments Companion" in the Extensions panel.
 ```bash
 git clone https://github.com/jericbas/json-comments-companion.git
 cd json-comments-companion
-npm install
-npm run compile
+bun install
+bun run compile
 ```
 
 Press `F5` to open Extension Development Host.
+
+> **Note:** You can also use `npm install` / `pnpm install` / `yarn install` if you prefer.
 
 ## 🛠️ Development
 
@@ -119,21 +122,23 @@ Press `F5` to open Extension Development Host.
 git clone https://github.com/jericbas/json-comments-companion.git
 cd json-comments-companion
 
-# Install dependencies
-npm install
+# Install dependencies ( Bun recommended )
+bun install
 
 # Compile
-npm run compile
+bun run compile
 
 # Watch mode
-npm run watch
+bun run watch
 
 # Run tests
-npm test
+bun run test
 
 # Package extension
-npm run package
+bun run package
 ```
+
+> **Note:** All `bun` commands work with `npm`, `pnpm`, or `yarn` as alternatives.
 
 ## 📸 Screenshots
 
@@ -146,12 +151,18 @@ npm run package
 3. **Matching**: Builds full paths (e.g., `scripts.build`) and matches against comment keys
 4. **Display**: Shows hover tooltips and inline CodeLens annotations
 
+## 🚀 Auto-Refresh (No Reload Needed)
+
+The extension watches your `.comments.json` files and automatically refreshes when they change. No need to reload VS Code window.
+
+To manually clear the cache: Command Palette → `JSON: Clear Comments Cache`
+
 ## 🗺️ Roadmap
 
 - [x] Basic hover and CodeLens
 - [x] Nested path resolution (objects)
 - [x] Array index support
-- [ ] File watcher for auto-refresh
+- [x] File watcher for auto-refresh
 - [ ] Quick Fix: "Add comment for this key"
 - [ ] Markdown support in comments
 - [ ] JSON Schema fallback
@@ -164,7 +175,7 @@ The extension uses VS Code's `HoverProvider` and `CodeLensProvider` APIs. The JS
 2. Build dot-notation paths from the current position
 3. Match paths against the companion file's comment map
 
-This approach avoids requiring a full JSON AST parse while handling most real-world JSON structures.
+Caching via mtime ensures unchanged files aren't re-read. File watchers trigger auto-refresh when companion files update.
 
 ## ⚖️ License
 

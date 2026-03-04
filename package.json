@@ -89,18 +89,18 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "bun run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
+    "pretest": "bun run compile && bun run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
     "package": "vsce package --no-dependencies",
     "publish:marketplace": "vsce publish",
-    "release": "npm run compile && npm run package",
-    "release:patch": "npm version patch && npm run release && npm run publish:marketplace",
-    "release:minor": "npm version minor && npm run release && npm run publish:marketplace",
-    "release:major": "npm version major && npm run release && npm run publish:marketplace"
+    "release": "bun run compile && bun run package",
+    "release:patch": "bun version patch && bun run release && bun run publish:marketplace",
+    "release:minor": "bun version minor && bun run release && bun run publish:marketplace",
+    "release:major": "bun version major && bun run release && bun run publish:marketplace"
   },
   "devDependencies": {
     "@types/vscode": "^1.60.0",

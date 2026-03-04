@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
-import { buildJsonPath } from './util';
+import { buildJsonPath } from './util'; import { loadCommentsCached, createCommentsFileWatcher, clearAllCaches } from './watcher';
 
 const CONFIG_HOVER = 'jsonCommentsCompanion.hoverEnabled';
 const CONFIG_CODELENS = 'jsonCommentsCompanion.codeLensEnabled';
@@ -178,7 +178,7 @@ async function provideHover(
 
         if (!keyAtPosition) return undefined;
 
-        const comments = await loadComments(document.uri.fsPath);
+        const comments = await loadCommentsCached(document.uri.fsPath);
         const comment = findCommentForPath(comments, keyAtPosition.fullPath);
 
         if (comment) {
@@ -200,7 +200,7 @@ async function provideCodeLenses(
     try {
         const config = vscode.workspace.getConfiguration();
         const maxLen = config.get('jsonCommentsCompanion.maxCommentLength', 50);
-        const comments = await loadComments(document.uri.fsPath);
+        const comments = await loadCommentsCached(document.uri.fsPath);
         const keyPositions = extractKeyPositions(document);
 
         for (const keyPos of keyPositions) {

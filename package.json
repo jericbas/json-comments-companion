@@ -39,6 +39,10 @@
       {
         "command": "jsonCommentsCompanion.clearCache",
         "title": "JSON: Clear Comments Cache"
+      },
+      {
+        "command": "jsonCommentsCompanion.addCommentForKey",
+        "title": "JSON: Add Comment for Key"
       }
     ],
     "menus": {
@@ -58,6 +62,10 @@
         {
           "command": "jsonCommentsCompanion.clearCache",
           "when": "true"
+        },
+        {
+          "command": "jsonCommentsCompanion.addCommentForKey",
+          "when": "editorLangId == json"
         }
       ],
       "editor/context": [

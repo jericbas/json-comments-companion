@@ -1,7 +1,9 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
-import { buildJsonPath } from './util'; import { loadCommentsCached, createCommentsFileWatcher, clearAllCaches } from './watcher';
+import { buildJsonPath } from './util';
+import { loadCommentsCached, createCommentsFileWatcher, clearAllCaches } from './watcher';
+import { AddCommentQuickFixProvider, addCommentForKey } from './quickFix';
 
 const CONFIG_HOVER = 'jsonCommentsCompanion.hoverEnabled';
 const CONFIG_CODELENS = 'jsonCommentsCompanion.codeLensEnabled';
@@ -42,11 +44,22 @@ export function activate(context: vscode.ExtensionContext): void {
         'jsonCommentsCompanion.toggleCodeLens',
         () => toggleSetting(CONFIG_CODELENS)
     );
+    const addComment = vscode.commands.registerCommand(
+        'jsonCommentsCompanion.addCommentForKey',
+        (uri, keyPath, keyName) => addCommentForKey(uri, keyPath, keyName)
+    );
+    const quickFixProvider = vscode.languages.registerCodeActionsProvider(
+        'json',
+        new AddCommentQuickFixProvider(),
+        { providedCodeActionKinds: AddCommentQuickFixProvider.providedCodeActionKinds }
+    );
 
     context.subscriptions.push(
         openComments,
         toggleHover,
         toggleCodeLens,
+        addComment,
+        quickFixProvider,
         configChangeListener
     );
 }

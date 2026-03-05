@@ -33,6 +33,10 @@ export async function loadCommentsCached(jsonPath: string): Promise<Record<strin
     }
 }
 
+export function clearCommentCache(jsonPath: string): void {
+    commentCache.delete(jsonPath);
+}
+
 export function clearAllCaches(): void {
     commentCache.clear();
 }

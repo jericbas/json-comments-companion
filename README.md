@@ -132,7 +132,11 @@ bun run compile
 bun run watch
 
 # Run tests
-bun run test
+bun run test           # Compile and run all tests
+bun run test:unit      # Run unit tests only
+
+# Lint
+bun run lint
 
 # Package extension
 bun run package
@@ -163,7 +167,8 @@ To manually clear the cache: Command Palette → `JSON: Clear Comments Cache`
 - [x] Nested path resolution (objects)
 - [x] Array index support
 - [x] File watcher for auto-refresh
-- [ ] Quick Fix: "Add comment for this key"
+- [x] Quick Fix: "Add comment for this key"
+- [x] Test suite (unit tests)
 - [ ] Markdown support in comments
 - [ ] JSON Schema fallback
 

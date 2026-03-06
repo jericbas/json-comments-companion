@@ -1,13 +1,12 @@
 name: "Release Extension"
 
 on:
-  push:
-    tags:
-      - "v*"
+  release:
+    types: [created]
   workflow_dispatch:
 
 permissions:
-  contents: write  # Required to create releases
+  contents: write
 
 jobs:
   release:
@@ -32,25 +31,10 @@ jobs:
       - name: Compile Extension
         run: bun run compile
 
-      - name: Lint Check
-        run: bun run lint || echo "Lint warnings found but continuing..."
-
       - name: Package Extension
         run: bun run package
 
-      - name: List Artifacts
-        run: ls -la *.vsix
-
-      - name: Create GitHub Release
-        if: startsWith(github.ref, 'refs/tags/v')
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            *.vsix
-          generate_release_notes: true
+      - name: Publish to Marketplace
+        run: npx vsce publish --yarn
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Publish to Marketplace (disabled)
-        if: false
-        run: echo "Marketplace publish disabled in CI - run locally"
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}

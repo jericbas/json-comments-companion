@@ -105,19 +105,19 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "bun run compile",
+    "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "bun run compile && bun run lint",
+    "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
-    "test": "bun run compile && bun run test:unit",
+    "test": "pnpm run compile && pnpm run test:unit",
     "package": "vsce package --no-dependencies",
     "publish:marketplace": "vsce publish",
-    "release": "bun run compile && bun run package",
-    "release:patch": "bun version patch && bun run release && bun run publish:marketplace",
-    "release:minor": "bun version minor && bun run release && bun run publish:marketplace",
-    "release:major": "bun version major && bun run release && bun run publish:marketplace",
-    "test:unit": "bunx ts-node test/unit/runner.ts"
+    "release": "pnpm run compile && pnpm run package",
+    "release:patch": "pnpm version patch && pnpm run release && pnpm run publish:marketplace",
+    "release:minor": "pnpm version minor && pnpm run release && pnpm run publish:marketplace",
+    "release:major": "pnpm version major && pnpm run release && pnpm run publish:marketplace",
+    "test:unit": "npx ts-node test/unit/runner.ts"
   },
   "devDependencies": {
     "@types/chai": "^5.2.3",

@@ -20,21 +20,21 @@ jobs:
         with:
           node-version: 20
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
-          bun-version: latest
+          version: latest
 
       - name: Install Dependencies
-        run: bun install
+        run: pnpm install
 
       - name: Compile Extension
-        run: bun run compile
+        run: pnpm run compile
 
       - name: Package Extension
-        run: bun run package
+        run: npx vsce package --no-dependencies
 
       - name: Publish to Marketplace
-        run: npx vsce publish --yarn
+        run: npx vsce publish --no-dependencies
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}

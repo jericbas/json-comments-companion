@@ -146,7 +146,15 @@ bun run package
 
 ## 📸 Screenshots
 
-*TODO: Screenshots showing hover tooltip and CodeLens on real config files*
+### Hover Comments
+Hover over any JSON key to see its annotation:
+
+![Hover Tooltip](images/screenshot-hover.png)
+
+### CodeLens Inline Comments
+Comments appear inline above JSON keys:
+
+![CodeLens Inline](images/screenshot-codelens.png)
 
 ## 📝 How it Works
 
